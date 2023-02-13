@@ -1,0 +1,294 @@
+{% extends 'base.html' %} {% block content %}
+
+{% load static %}
+
+
+<style>
+    .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
+
+    @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+            font-size: 3.5rem;
+        }
+    }
+
+    /* MARKETING CONTENT
+-------------------------------------------------- */
+    /* Center align the text within the three columns below the carousel */
+
+    .marketing .col-lg-4 {
+        margin-bottom: 1.5rem;
+        text-align: center;
+    }
+
+    .marketing h2 {
+        font-weight: 400;
+    }
+
+    .marketing .col-lg-4 p {
+        margin-right: .75rem;
+        margin-left: .75rem;
+    }
+
+    /* Featurettes
+------------------------- */
+
+    .featurette-divider {
+        margin: 5rem 0;
+        /* Space out the Bootstrap <hr> more */
+    }
+
+    /* Thin out the marketing headings */
+
+    .featurette-heading {
+        font-weight: 300;
+        line-height: 1;
+        letter-spacing: -.05rem;
+    }
+
+    /* RESPONSIVE CSS
+-------------------------------------------------- */
+
+    .featurette-heading {
+        font-size: 50px;
+    }
+
+    @media (min-width: 62em) {
+        .featurette-heading {
+            margin-top: 7rem;
+        }
+    }
+
+    #blogpicid {
+        height: 359px;
+        border-radius: 17px;
+    }
+
+    .chatt {
+        float: right;
+        bottom: 5px;
+        padding: 0px;
+        margin: -24px;
+        width: 100px;
+        height: 100px;
+    }
+
+    .bgg {
+        background-color: gainsboro;
+        border-radius: 12px;
+    }
+
+    .left {
+        padding-left: 434px;
+        height: fit-content;
+        justify-content: space-between;
+    }
+    .cardbg{
+        background-color: cornsilk;
+    }
+</style>
+{% if user.is_authenticated %}
+<div class="fixed-bottom container">
+    <a class="chatt my-2 " href="{% url 'main_view' %}"><i class="fa-solid fa-comment-dots fa-3x"></i></a>
+</div>
+{% endif %}
+
+
+
+<!-- Marketing messaging and featurettes
+  ================================================== -->
+<!-- Wrap the rest of the page in another container to center all the content. -->
+<div class="container marketing">
+
+    <!-- Three columns of text below the carousel -->
+    <div class="row">
+
+        <div class="container">
+            <section class="py-5 text-center container">
+                <div class="row py-lg-5">
+                    <div class="col-lg-6 col-md-8 mx-auto">
+                        <h1 class="fw-light">Hi ! patient</h1>
+                        <p class="lead text-muted">Are you searching to find some content that help you so check below .
+                        </p>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+
+
+
+        <div class="row featurette">
+            <div class="col-md-7 order-md-2">
+                <h2 class="featurette-heading">What is a psychiatrist? Everything you need to know <span class="text-muted">See for
+                        yourself.</span></h2>
+                <p class="lead"> Every problems will slove by proper training and that training you will achieve through these blogs also you can join us for consuling click on the chat button.
+                </p>
+            </div>
+            <div class="col-md-5 order-md-1">
+                
+                <img class="bd-placeholder-img bd-placeholder-img-lg
+                    featurette-image img-fluid mx-auto" width="500" height="500" src="{% static 'M-img/Drs.jpg' %}" alt=""
+                    aria-label="Placeholder:
+                    500x500" preserveAspectRatio="xMidYMid slice" role="img" focusable="false">
+                
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+
+
+<div class="album py-5 bg-white">
+    <div class="container">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+            {% for b in moreblogs %}
+            <div class="col bg-light rounded">
+                <div class="card shadow-sm">
+                    <p class="text-center">{{b.title}}</p>
+                    <img src="{{b.img.url}}" class="bd-placeholder-img
+                            card-img-top" width="100%" height="225">
+                    <div class="card-body">
+                        <p class="card-text">{{b.description}}</p>
+                        <div class="d-flex justify-content-between
+                                align-items-center">
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-sm
+                                        btn-outline-secondary">View</button>
+                            </div>
+                            <small class="text-muted">{{b.time}}</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+
+        </div>
+    </div>
+</div>
+
+<br>
+<div class="container">
+    <div class="text-center">
+        <p>Different users posts that help us.</p>
+    </div>
+</div>
+
+ <!-- <div class="album py-5 bg-white">
+    <div class="container">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+            {% for x in data %}
+            <div class="col bg-light rounded">
+                <div class="cardbg card shadow-sm">
+                    <p class="title p-3"><i class="fa fa-user" aria-hidden="true"></i>{{x.user_id.username}}</p>
+                    <div class="card-body">
+                        <h1>{{x.title}}</h1>
+                        <p id="ds">{{x.dsc}}</p>
+                        <div class="d-flex justify-content-between justify-content-center">
+                            <div class="btn-group">
+                                &nbsp; &nbsp;
+                                <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                                <button type="button" class="btn btn-sm btn-outline-secondary">{{x.date}}</button>
+
+                                <small class="text-muted"></small> {% if user.id == x.user_id_id %}
+                                <form action=" delete/{{x.id}} " method="POST">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-sm btn-outline-secondary">Delete</button>
+                                </form>
+
+                                <form action=" edit/{{x.id}} " method="POST">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-sm btn-outline-secondary">Edit</button>
+                                </form>
+                                 {% endif %}
+                            </div>
+                        </div>
+                       
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+
+    </div>
+</div>
+</div>  -->
+<br> 
+
+
+<!-- <div class="container ">
+    <div class="container py-5  container d-flex">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+            {% for x in data %}
+            <div class="bgg col-md-6 card">
+                <div id="mainn card">
+                    <p class="danger"><i class="fa fa-user" aria-hidden="true"></i>{{x.user_id.username}}</p>
+                    <h1>{{x.title}}</h1>
+                    <p>Date:{{x.date}}</p>
+                    <p>{{x.dsc}}</p>
+                    {% if user.id == x.user_id_id %}
+                    <div class="left d-flex">
+                        <form action=" delete/{{x.id}} " method="POST">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-primary btn-sm">Delete</button>
+                        </form>
+
+                        <form action=" edit/{{x.id}} " method="POST">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-primary btn-sm">Edit</button>
+                        </form>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div> -->
+
+
+
+<div class="container">
+    <div class="row mb-2">
+        {% for x in data %}
+      <div class="col-md-6">
+        <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+          <div class="col p-4 d-flex flex-column position-static" style="background-color: aqua;">
+            <strong class="d-inline-block mb-2 text-success"><i class="fa fa-user" aria-hidden="true"></i>{{x.user_id.username}}</strong>
+            <h3 class="mb-0">{{x.title}}</h3>
+            <div class="mb-1 text-muted">{{x.date}}</div>
+            <p class="mb-auto">{{x.dsc}}.</p>
+            <a href="#" class="stretched-link">Continue reading</a>
+            <div class=" d-flex">
+                <small class="text-muted"></small> {% if user.id == x.user_id_id %}
+            <form action=" delete/{{x.id}} " method="POST">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-sm btn-outline-secondary">Delete</button>
+            </form>
+
+            <form action=" edit/{{x.id}} " method="POST">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-sm btn-outline-secondary">Edit</button>
+            </form>
+             {% endif %}
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+
+ 
+
+    </div>
+</div>
+<br> {% endblock %}

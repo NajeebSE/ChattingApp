@@ -1,0 +1,386 @@
+{% extends 'base.html' %} {% block content %}
+
+
+
+<style>
+    .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
+    
+    @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+            font-size: 3.5rem;
+        }
+    }
+</style>
+
+
+<!-- Custom styles for this template -->
+<link href="https://fonts.googleapis.com/css?family=Playfair&#43;Display:700,900&amp;display=swap" rel="stylesheet">
+<!-- Custom styles for this template -->
+<style>
+    /* stylelint-disable selector-list-comma-newline-after */
+    
+    .blog-header {
+        line-height: 1;
+        border-bottom: 1px solid #e5e5e5;
+    }
+    
+    .blog-header-logo {
+        font-family: "Playfair Display", Georgia, "Times New Roman", serif;
+        font-size: 2.25rem;
+    }
+    
+    .blog-header-logo:hover {
+        text-decoration: none;
+    }
+    
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        font-family: "Playfair Display", Georgia, "Times New Roman", serif;
+    }
+    
+    .display-4 {
+        font-size: 2.5rem;
+    }
+    
+    @media (min-width: 768px) {
+        .display-4 {
+            font-size: 3rem;
+        }
+    }
+    
+    .nav-scroller {
+        position: relative;
+        z-index: 2;
+        height: 2.75rem;
+        overflow-y: hidden;
+    }
+    
+    .nav-scroller .nav {
+        display: flex;
+        flex-wrap: nowrap;
+        padding-bottom: 1rem;
+        margin-top: -1px;
+        overflow-x: auto;
+        text-align: center;
+        white-space: nowrap;
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    .nav-scroller .nav-link {
+        padding-top: .75rem;
+        padding-bottom: .75rem;
+        font-size: .875rem;
+    }
+    
+    .card-img-right {
+        height: 100%;
+        border-radius: 0 3px 3px 0;
+    }
+    
+    .flex-auto {
+        flex: 0 0 auto;
+    }
+    
+    .h-250 {
+        height: 250px;
+    }
+    
+    @media (min-width: 768px) {
+        .h-md-250 {
+            height: 250px;
+        }
+    }
+    /* Pagination */
+    
+    .blog-pagination {
+        margin-bottom: 4rem;
+    }
+    
+    .blog-pagination>.btn {
+        border-radius: 2rem;
+    }
+    /*
+        * Blog posts
+        */
+    
+    .blog-post {
+        margin-bottom: 4rem;
+    }
+    
+    .blog-post-title {
+        margin-bottom: .25rem;
+        font-size: 2.5rem;
+    }
+    
+    .blog-post-meta {
+        margin-bottom: 1.25rem;
+        color: #727272;
+    }
+    /*
+        * Footer
+        */
+    
+    .blog-footer {
+        padding: 2.5rem 0;
+        color: #727272;
+        text-align: center;
+        background-color: #f9f9f9;
+        border-top: .05rem solid #e5e5e5;
+    }
+    
+    .blog-footer p:last-child {
+        margin-bottom: 0;
+    }
+    
+    .a {
+        font-size: large;
+    }
+    
+    .chatt {
+        float: right;
+        bottom: 5px;
+        padding: 0px;
+        margin: -24px;
+        width: 100px;
+        height: 100px;
+    }
+    
+    @media screen and (max-width: 600px) {
+        .mainc {
+            font-size: 20px;
+        }
+    }
+    
+    @media screen and (max-width: 600px) {
+        body {
+            font-size: 15px;
+        }
+    }
+    
+    @media screen and (max-width:300px) {
+        #htag {
+            font-size: 20px;
+        }
+    }
+    
+    @media screen and (min-width:600px) {
+        #htag {
+            font-size: 30px;
+        }
+    }
+    
+    #msgg {
+        color: black;
+        font-size: 20px;
+    }
+    
+    #feedback-form-wrapper #floating-icon>a {
+        position: fixed;
+        right: 0;
+        top: 50%;
+        transform: rotate(-90deg) translate(50%, -50%);
+        transform-origin: right;
+    }
+</style>
+
+{% for message in messages %}
+
+<div class="container">
+    <div class="alert alert-success alert-dismissible">
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        <strong>message..!</strong>{{message}}.
+    </div>
+</div>
+{% endfor %}
+
+<section class="py-5 text-center container">
+
+    <div class="row py-lg-5">
+        <div class="col-lg-6 col-md-8 mx-auto">
+            <img style="  width: 130px;" src="https://cdn.pixabay.com/photo/2018/04/03/00/48/fingers-3285615__340.png" alt="">
+            <h1 class="fw-light">Mental Healthd </h1>
+            <p id="msgg" class="lead">I'm here for you... You are not alone... Read your intrast blogs if it help full for you and you need a consultant to guide you through chat/video call to a Dr then Sign Up you will see chat button below.</p>
+
+            <button class="btn btn-primary" type="button" disabled>
+                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                <span class="visually-hidden">Loading...</span>
+              </button>
+            <button class="btn btn-primary" type="button" disabled>
+                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                Loading...
+              </button>
+
+            
+
+            {% if user.is_authenticated %}
+            <div class="fixed-bottom container">
+                <a class="chatt  my-2 " href="{% url 'main_view' %}"><i class="fa-solid fa-comment-dots fa-3x"></i></a>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</section>
+
+
+
+<div class="container">
+    <h6 id="htag" class="blog-post-title">Types of mental Problems</h6>
+    <p>Anxiety disorders, including panic disorder, obsessive-compulsive disorder, and phobias.<br> Depression, bipolar disorder, and other mood disorders. Eating disorders,Personality disorders,Post-traumatic stress disorder,Psychotic disorders, including
+        schizophrenia.
+    </p>
+
+</div>
+<div class="mainc container mh-100">
+    <div class="row mb-2">
+        <div class="col-md-6" style="box-shadow: 10px 10px 5px lightblue;">
+            <div class="row g-0 border rounded  flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                <div class="col p-4 d-flex flex-column position-static ">
+                    <strong class="d-inline-block mb-2 text-primary">World</strong>
+                    <h3 id="htag" class="mb-0">Mental illnesses</h3>
+                    <p class="card-text mb-auto">Mental illnesses are health conditions involving changes in emotion, thinking or behavior (or a combination of these).</p>
+                    <a href="" class="stretched-link">Continue reading</a>
+                </div>
+                <div class="col-auto d-none d-lg-block">
+                    <img class="bd-placeholder-img" width="200" height="250" src="/static/M-img/m1.jpg">
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6" style="box-shadow: 10px 10px 5px lightblue;">
+            <div class="row g-0 border rounded  flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                <div class="col p-4 d-flex flex-column position-static ">
+                    <strong class="d-inline-block mb-2 text-primary">World</strong>
+                    <h3 id="htag" class="mb-0">Mental illnesses</h3>
+                    <p class="card-text mb-auto  ">Mental illnesses are health conditions involving changes in emotion, thinking or behavior (or a combination of these).</p>
+                    <a href="#" class="stretched-link">Continue reading</a>
+                </div>
+                <div class="col-auto d-none d-lg-block">
+                    <img class="bd-placeholder-img" width="200" height="250" src="/static/M-img/m3.jpg">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+&nbsp; &nbsp;
+<main class="container">
+    <div class="row">
+        <div class="col-md-8">
+            <h3 id="htag" class="pb-4 mb-4 font-italic border-bottom">
+                psychiatric
+            </h3>
+
+            <div class="blog-post">
+                <h2 id="htag" class="blog-post-title">Sample blog post</h2>
+                <p class="blog-post-meta">January 1, 2014 by <a href="#">Mark</a></p>
+
+                Psychiatry is the medical specialty devoted to the diagnosis, prevention, and treatment of mental disorders.[1][2] These include various maladaptations related to mood, behaviour, cognition, and perceptions. See glossary of psychiatry. Initial psychiatric
+                assessment of a person typically begins with a case history and mental status examination. Physical examinations and psychological tests may be conducted. On occasion, neuroimaging or other neurophysiological techniques are used.[3] Mental
+                disorders are often diagnosed in accordance with clinical concepts listed in diagnostic manuals such as the International Classification of Diseases (ICD), edited and used by the World Health Organization (WHO) and the widely used Diagnostic
+                and Statistical Manual of Mental Disorders (DSM), published by the American Psychiatric Association (APA). The fifth edition of the DSM (DSM-5) was published in May 2013 which re-organized the larger categories of various diseases and
+                expanded upon the previous edition to include information/insights that are consistent with current research.[4] Combined treatment with psychiatric medication and psychotherapy has become the most common mode of psychiatric treatment
+                in current practice,[5][6] but contemporary practice also includes a wide variety of other modalities, e.g., assertive community treatment, community reinforcement, and supported employment. Treatment may be delivered on an inpatient or
+                outpatient basis, depending on the severity of functional impairment or on other aspects of the disorder in question. An inpatient may be treated in a psychiatric hospital. Research within psychiatry as a whole is conducted on an interdisciplinary
+                basis with other professionals, such as epidemiologists, nurses, social workers, occupational therapists, or clinical psychologists.
+
+
+            </div>
+            <!-- /.blog-post -->
+
+            <div class="blog-post">
+                <h2 id="htag" class="blog-post-title">Current issues in mental health?</h2>
+                <p class="blog-post-meta">December 23, 2013 by <a href="#">Jacob</a></p>
+
+                <p>These include social and economic disadvantage and deprivation, low levels of education, unemployment or insecure employment, discrimination and violence. Mental health in turn impacts on issues such as alcohol and substance misuse, abuse
+                    and gender-based violence.10-Jul-2018.</p>
+
+            </div>
+            <!-- /.blog-post -->
+
+            <div class="blog-post">
+                <h2 id="htag" class="blog-post-title">A new understanding of mental illness</h2>
+                <p class="blog-post-meta">December 14, 2013 by <a href="#">Chris</a></p>
+                <i>Source....McGill University</i>
+                <p>The causes of psychiatric disorders are poorly understood. Now there is evidence that a wide range of early onset psychiatric problems (from depression, anxiety and addictions to dyslexia, bulimia, and ADHD) may be largely due to the combination
+                    of just three factors. The first is biological --i n the form of individual variability in the brain's dopamine reward pathway. The second is social -- and points to the important role of early childhood neglect or abuse. And the third
+                    is psychological--and relates to temperament, and particularly to tendencies toward impulsivity and difficulty controlling emotions. These findings have implications for understanding both the causes of a wide range of psychiatric
+                    disorders and the features worth targeting in early intervention efforts..</p>
+
+
+            </div>
+            <!-- /.blog-post -->
+
+
+
+
+            <!-- user posts-->
+            <nav class="blog-pagination">
+                <a class="btn btn-outline-primary" href="#">Back to Top</a>
+                <a class="btn btn-outline-secondary disabled" href="#" tabindex="-1" aria-disabled="true">Newer</a>
+            </nav>
+
+        </div>
+
+        <aside class="col-md-4">
+            <div class="p-4 mb-3 bg-light rounded">
+                <h4 class="font-italic">About</h4>
+                <p class="mb-0">Etiam porta <em>sem malesuada magna</em> mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.</p>
+            </div>
+
+            <div class="p-4">
+                <h4 class="font-italic">Archives</h4>
+                <ol class="list-unstyled mb-0">
+                    <li><a href="#">March 2014</a></li>
+                    <li><a href="#">February 2014</a></li>
+                    <li><a href="#">January 2014</a></li>
+                    <li><a href="#">December 2013</a></li>
+                    <li><a href="#">November 2013</a></li>
+                    <li><a href="#">October 2013</a></li>
+                    <li><a href="#">September 2013</a></li>
+                    <li><a href="#">August 2013</a></li>
+                    <li><a href="#">July 2013</a></li>
+                    <li><a href="#">June 2013</a></li>
+                    <li><a href="#">May 2013</a></li>
+                    <li><a href="#">April 2013</a></li>
+                </ol>
+            </div>
+
+            <div class="p-4">
+                <h4 class="font-italic">Elsewhere</h4>
+                <ol class="list-unstyled">
+
+                    <li><a href="#">Twitter</a></li>
+                    <li><a href="#">Facebook</a></li>
+                </ol>
+            </div>
+        </aside>
+
+    </div>
+    <!-- /.row -->
+
+    <div id="feedback-form-wrapper">
+        <div id="floating-icon">
+            <a href="{% url 'feedback' %}" style="color:white;  " class="btn btn-primary btn-sm rounded-0" data-toggle="modal" data-target="#exampleModal">
+            Feedback
+          </a>
+
+
+</main>
+<!-- /.container -->
+
+
+
+
+</footer>
+
+
+{% endblock %}

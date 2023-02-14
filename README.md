@@ -5,3 +5,5 @@ intall requirements.tx
 migration  cmd.... python manage.py runserver
 migrate    cmd.... python manage.py migrate
 run project cmd... python manage.py runserver
+
+If any issues txt me In youtube comment.
